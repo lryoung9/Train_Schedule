@@ -4,6 +4,18 @@
 	<!-- Train Track Favicon -->
 	<link rel="shortcut icon" type="image/png" href="favicon.ico"/>
 	<title>Train Schedule</title>
+	<!-- Firebase -->
+	<script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+	<!-- Moment.js -->
+	<script src="http://momentjs.com/downloads/moment.js"></script>
+	<!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-2.2.3.js"></script>
+	<!--Bootstrap Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<!--Bootstrap Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<!--Bootstrap Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	<!-- Custom Style Sheet -->
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<!-- Custom JavaScript -->
@@ -11,6 +23,57 @@
 </head>
 <body>
 	<div class="header"><h1>Train Schedule</h1></div>
-
+	<div class="container">
+		<!-- Current Train Schedule --> 
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Current Train Schedule</h3>
+			</div>
+			<div class="panel-body">
+				<center>
+					<table style="width:100%" id="directory">
+				  		<thead>
+				  			<tr>
+								<th id="train">Train Name</th>
+								<th id="destination">Destination</th>
+								<th id="frequency">Frequency (min)</th> 
+								<th id="next-arrival">Next Arrival</th>
+								<th id="min-away">Min Away</th>
+							</tr>
+						</thead>
+						<tbody id="add-train"></tbody>
+					</table>        
+				</center>				
+			</div>
+		</div>
+		<!-- Add a Train Form -->
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Add Train</h3>
+			</div>
+			<div class="panel-body">
+				<form role="form" id="form-design">
+					<div class="form-group">
+						<label for="name-input">Train Name</label><br>
+						<input class="form-control" id="name-input" type="text">
+					</div>
+					<div class="form-group">
+				  		<label for="destination-input">Destination</label><br>
+						<input class="form-control" id="destination-input" type="text">
+					</div>
+					<div class="form-group">
+				  		<label for="train-time-input">First Train Time (HH:MM 24-hr format)</label><br>
+						<input class="form-control" id="train-time-input" type="text">
+					</div>
+					<div class="form-group">
+						<label for="frequency-input">Frequency</label><br>
+						<input class="form-control" id="frequency-input" type="number">
+					</div>
+					<button class="btn btn-default" id="add-train" type="submit">ADD</button>
+			  	</form>    				
+			</div>
+			
+	  	</div>
+	</div>
 </body>
 </html>
