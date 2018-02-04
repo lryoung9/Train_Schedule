@@ -34,3 +34,38 @@ $("#add-employee").on("click", function(){
 		dataAdded: firebase.database.ServerValue.TIMESTAMP
 	});
 });
+
+// Need to look into this functionality
+// database.ref().on("value", function(snapshot) {
+//  var sv = snapshot.val();
+//  var svArr = Object.keys(sv);
+//  var lastIndex = svArr.length - 1;
+//  var lastKey = svArr[lastIndex];
+//  var lastObj = sv[lastKey];
+// });
+
+// database.ref().on("child_added", function(childSnapshot) {
+//  console.log(childSnapshot.val().name);
+//  console.log(childSnapshot.val().destination);
+//  console.log(childSnapshot.val().first-train);
+//  console.log(childSnapshot.val().frequency);
+
+// temporary variable for where to add new train info
+var addTrain = $("#add-train");
+// temporary variable to store added train info
+var trainData = "<tr>";
+trainData += "<td>" + childSnapshot.val().name + "</td>";
+trainData += "<td>" + childSnapshot.val().destination + "</td>";
+trainData += "<td>" + childSnapshot.val().first-train + "</td>";
+trainData += "<td>" + moment().diff(first-train, "minutes") + "</td>";
+trainData += "<td>" + childSnapshot.val().frequency + "</td>";
+trainData += "<td></td>";
+trainData += "</tr>";
+addTrain.append(trainData);
+};
+
+// function to catch errors
+function(errorObject) {
+   console.log("Errors handled: " + errorObject.code);
+});
+
