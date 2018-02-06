@@ -36,19 +36,19 @@ $("#add-employee").on("click", function(){
 });
 
 // Need to look into this functionality
-// database.ref().on("value", function(snapshot) {
-//  var sv = snapshot.val();
-//  var svArr = Object.keys(sv);
-//  var lastIndex = svArr.length - 1;
-//  var lastKey = svArr[lastIndex];
-//  var lastObj = sv[lastKey];
-// });
+database.ref().on("value", function(snapshot) {
+ var sv = snapshot.val();
+ var svArr = Object.keys(sv);
+ var lastIndex = svArr.length - 1;
+ var lastKey = svArr[lastIndex];
+ var lastObj = sv[lastKey];
+});
 
-// database.ref().on("child_added", function(childSnapshot) {
-//  console.log(childSnapshot.val().name);
-//  console.log(childSnapshot.val().destination);
-//  console.log(childSnapshot.val().first-train);
-//  console.log(childSnapshot.val().frequency);
+database.ref().on("child_added", function(childSnapshot) {
+ console.log(childSnapshot.val().name);
+ console.log(childSnapshot.val().destination);
+ console.log(childSnapshot.val().first-train);
+ console.log(childSnapshot.val().frequency);
 
 // temporary variable for where to add new train info
 var addTrain = $("#add-train");
