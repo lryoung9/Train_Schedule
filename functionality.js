@@ -14,34 +14,37 @@ firebase.initializeApp(config);
 var database = firebase.database();
 var name;
 var destination;
-var first-train;
+var firstTrain;
 var frequency;
 
-// Collect form input from user:
-$("#form-group").val("");
-$("#add-employee").on("click", function(){
-	event.preventDefault()
-	name = $("#name-input").val().trim();
-	destination = $("#destination-input").val().trim();
-	first-train = $("#train-tim-input").val().trim();
-	frequency = $("#frequency-input").val().trim();
+// Collect form input from user and store as variables:
+$("#add-train-btn").on("click", function(event){
+	event.preventDefault();
 
-	database.ref().push({
-		name: name,
-		destination: destination,
-		first-train: first-train,
-		frequency: frequency,
-		dataAdded: firebase.database.ServerValue.TIMESTAMP
-	});
-});
+	var newTrain = {
+		name: $("#name-input").val().trim(),
+		destination: $("#destination-input").val().trim(),
+		firstTrain: moment($("#train-time-input").val().trim(), "HH:mm").format("HH:mm"),
+		frequency: parseInt($("#frequency-input").val().trim())
+	};
+	console.log(newTrain)
 
-// Need to look into this functionality
-database.ref().on("value", function(snapshot) {
- var sv = snapshot.val();
- var svArr = Object.keys(sv);
- var lastIndex = svArr.length - 1;
- var lastKey = svArr[lastIndex];
- var lastObj = sv[lastKey];
+	// console.log(name);
+	// console.log(destination);
+	// console.log(firstTrain.format("HH:mm"));
+	// console.log(frequency);
+
+	// Upload new train data to database
+	database.ref().push(newTrain);
+
+	// Test console
+	console.log(database.ref());
+
+	// Clear text-input boxes
+	$("#name-input").val("");
+	$("#destination-input").val("");
+	$("#train-time-input").val("");
+	$("#frequency-input").val("");
 });
 
 database.ref().on("child_added", function(childSnapshot) {
@@ -62,7 +65,7 @@ trainData += "<td>" + childSnapshot.val().frequency + "</td>";
 trainData += "<td></td>";
 trainData += "</tr>";
 addTrain.append(trainData);
-};
+},
 
 // function to catch errors
 function(errorObject) {
