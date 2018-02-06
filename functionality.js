@@ -64,14 +64,12 @@ database.ref().on("child_added", function(childSnapshot) {
 	var currentTime = moment();
 	// difference between the times in minutes
 	var timeDifference = moment().diff(timeConverted, "minutes");
-	
 	// time remaining until next train
 	var timeRemaining = parseInt(frequency - (timeDifference % frequency));
-
-	console.log('time remaining: ' + timeRemaining);
-	// next arrival
-	trainData += "<td>" + currentTime.add(timeRemaining).format("hh:mm a") + "</td>";
-
+	// add time remaining to current time
+	var nextTrain = moment().add(timeRemaining, "minutes");
+	// format next arrival time in hh:mm
+	trainData += "<td>" + moment(nextTrain).format("hh:mm a") + "</td>";
 	// min away
 	trainData += "<td>" + timeRemaining + "</td>";
 
